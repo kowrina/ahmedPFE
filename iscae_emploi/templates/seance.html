@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<body>
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-status mg-b-10 " >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap drp-lst">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card card-body">
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                        <hr>
+                                        Du Semaine :<input type="date" blank="true" name='fromdate'/>
+                                        <input type="submit" value="Chercher"/>
+                                        <hr>
+                                            </form>
+                                    </div>
+                                    <h4>Listes des Cours</h4>
+                            <div class="add-product" >
+                                <a class="btn " href="{% url 'iscae_emploi:seance_ajout' groupe %}">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </a>
+
+
+
+                            </div>
+                                    <div class="down-product" >
+
+
+ {% if dd %}
+                              <a class="btn btn-success"  href="{% url 'iscae_emploi:seance_download' %}" ><i class="fa fa-download" aria-hidden="true"></i></a>
+
+                                {%endif %}
+
+                            </div>
+
+
+
+                                </div>
+                            </div>
+
+<br>
+
+
+                            <div class="asset-inner">
+                                <table>
+                                    <tr>
+                                        <th>Cours</th>
+                                        <th>Date</th>
+                                        <th>Créneaux</th>
+
+                                    </tr>
+                                    {% for s in seance %}
+                                    <tr>
+
+                                        <td>{{s.cours}}</td>
+                                        <td>{{s.date}}</td>
+                                        <td>{{s.créneau}}</td>
+
+                                        <td>
+                                            <button type="button" class="btn btn-custon-three btn-primary">
+                                                <a href="{% url 'iscae_emploi:seance_edit' s.id %}" style="color:white;"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                            </button>
+                                            <button type="button" class="btn btn-custon-three btn-danger">
+                                                <a  href="{% url 'iscae_emploi:seance_delete' s.id %}" style="color:white;"><i class="fa fa-trash-alt" aria-hidden="true"></i></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+
+                            </div>
+                            <div class="custom-pagination">
+                                <nav aria-label="Page navigation example">
+                                    <form method="get">
+                                    <ul class="pagination">
+                                        {% for i in pagination.page_range %}
+
+                                        <li class="page-item {% if i == page_number %} active {% endif %}">
+                                            <a class="page-link" href="?page={{ i }}">{{i}}</a>
+                                        </li>
+
+                                        {% endfor %}
+                                    </ul>
+                                        </form>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+{% endblock body %}
+

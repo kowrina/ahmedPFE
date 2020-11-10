@@ -1,0 +1,179 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Composant</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'static_file/img/favicon.ico ' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/bootstrap.min.css' %}">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/font-awesome.min.css' %}">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'static_file/css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'static_file/css/owl.transitions.css' %}">
+
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+-->
+
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/animate.css ' %}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/normalize.css ' %}">
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/meanmenu.min.css ' %}">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/main.css' %}">
+    <!-- educate icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/educate-custon-icon.css' %}">
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/morrisjs/morris.css' %}">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/scrollbar/jquery.mCustomScrollbar.min.css' %}">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/metisMenu/metisMenu.min.css' %}">
+    <link rel="stylesheet" href="{% static 'static_file/css/metisMenu/metisMenu-vertical.css' %}">
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/calendar/fullcalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'static_file/css/calendar/fullcalendar.print.min.css' %}">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/style.css' %}">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'static_file/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'static_file/css/fontawesome-all.min.css' %}">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="{% static 'static_file/js/vendor/modernizr-2.8.3.min.js' %}"></script>
+</head>
+
+
+<body>
+
+
+   <div class="error-pagewrap">
+		<div class="error-page-int">
+			<div class="text-center m-b-md custom-login">
+				<h3>Connection</h3>
+				<p>Generation d'emploi du temps</p>
+			</div>
+			<div class="content-error">
+				<div class="hpanel">
+                    <div class="panel-body">
+                        <form method="POST"  id="loginForm">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label" for="username">Nom</label>
+                                <input placeholder="example@gmail.com" type="text" name="username"   id="username" class="form-control">
+                                <span class="help-block small">Nom de L'utilisateur</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="password">Password</label>
+                                <input placeholder="******" type="password" name="password" id="password"  class="form-control">
+                                <span class="help-block small">Le Mot de passe </span>
+                            </div>
+                            <div class="checkbox login-checkbox">
+                                <label>
+										<input type="checkbox" class="i-checks"> Remember me </label>
+                                <p  class="help-block small">Pour connecter automatiquement la prochaine fois</p>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
+
+                        </form>
+                    </div>
+                </div>
+			</div>
+
+		</div>
+    </div>
+
+    <!-- jquery
+		============================================ -->
+    <script src="{% static 'static_file/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'static_file/js/bootstrap.min.js' %}"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="{% static 'static_file/js/wow.min.js' %}"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="{% static 'static_file/js/jquery-price-slider.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'static_file/js/jquery.meanmenu.js' %}"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="{% static 'static_file/js/owl.carousel.min.js' %}"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="{% static 'static_file/js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'static_file/js/fontawesome-all.min.js' %}"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="{% static 'static_file/js/jquery.scrollUp.min.js' %}"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="{% static 'static_file/js/counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'static_file/js/counterup/waypoints.min.js' %}"></script>
+    <script src="{% static 'static_file/js/counterup/counterup-active.js' %}"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="{% static 'static_file/js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'static_file/js/scrollbar/mCustomScrollbar-active.js' %}"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="{% static 'static_file/js/metisMenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'static_file/js/metisMenu/metisMenu-active.js' %}"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="{% static 'static_file/js/morrisjs/raphael-min.js' %}"></script>
+    <script src="{% static 'static_file/js/morrisjs/morris.js' %}"></script>
+    <script src="{% static 'static_file/js/morrisjs/morris-active.js' %}"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="{% static 'static_file/js/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'static_file/js/sparkline/jquery.charts-sparkline.js' %}"></script>
+    <script src="{% static 'static_file/js/sparkline/sparkline-active.js' %}"></script>
+    <!-- calendar JS
+		============================================ -->
+    <script src="{% static 'static_file/js/calendar/moment.min.js' %}"></script>
+    <script src="{% static 'static_file/js/calendar/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'static_file/js/calendar/fullcalendar-active.js' %}"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="{% static 'static_file/js/plugins.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static 'static_file/js/main.js' %}"></script>
+
+</body>
+{% block body %}
+
+{% endblock body %}
+
+</html>

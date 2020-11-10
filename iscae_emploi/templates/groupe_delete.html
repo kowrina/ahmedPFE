@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+<div class="all-content-wrapper" style="margin-top:80px">
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Suppression de Groupe</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                            <form action="{% url 'iscae_emploi:groupe_delete' item.id%}" method="POST">
+                                                {% csrf_token %}
+                                                <p>confirmer la suppression du Groupe "{{item}}"</p>
+                                               <input class="btn btn-warning mt-4" onClick="javascript:history.go(-1);" type="button" value="Annuler">
+                                                <input class="btn btn-danger mt-4" type="submit" value="Confirmer">
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

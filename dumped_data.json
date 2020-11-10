@@ -1,0 +1,320 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "cours"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "jour"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "groupe"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "professeur"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "preferance"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "detailcalandrier"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "filier"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "indispoprof"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "matier"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "departement"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "classe"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "plage"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "calandrierstandard"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "salle"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "niveau"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "exception_j"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "programmer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "cr\u00e9neau"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "s\u00e9ance"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "d\u00e9tailcalandrier"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "creneau"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 28,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "seance"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 29,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "indispogroupe"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 30,
+    "fields": {
+        "app_label": "iscae_emploi",
+        "model": "exceptioncalandrier"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5cmmwvq85rr9a2do0p015ec4o59063n5",
+    "fields": {
+        "session_data": "NzIxZjE5NzY4NTBjZjc4NWM2NWQ1Mzc2OWFlNTFhNmEwMjNhZWMyNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2YjNmNmU2YTVjMTNlZTJkMmY5MjUyN2VjYThhYTExMDA1ZWMzOWRjIn0=",
+        "expire_date": "2020-07-26T15:47:16.056Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "9cu5inqdkavza8r4ixhpwfwegts2o1zq",
+    "fields": {
+        "session_data": "ZDRlYzQwMDFkNGNhMmYwMmZlM2IxY2IwODVmMTU0MmZiZDBlZjZiMDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3YTNkMTc0MzM2Y2ZjYTEyNTY0NmNkM2RmNjI0OGVmZWQwNGVhYmU2In0=",
+        "expire_date": "2020-08-18T14:25:45.269Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "beh7cwxf75kfr02ash75jf7by4x6puj3",
+    "fields": {
+        "session_data": "NzIxZjE5NzY4NTBjZjc4NWM2NWQ1Mzc2OWFlNTFhNmEwMjNhZWMyNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2YjNmNmU2YTVjMTNlZTJkMmY5MjUyN2VjYThhYTExMDA1ZWMzOWRjIn0=",
+        "expire_date": "2020-07-29T16:40:19.300Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "cv6rhp8phagyyjbmacmv8dz1ahlau2n6",
+    "fields": {
+        "session_data": "ZDRlYzQwMDFkNGNhMmYwMmZlM2IxY2IwODVmMTU0MmZiZDBlZjZiMDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3YTNkMTc0MzM2Y2ZjYTEyNTY0NmNkM2RmNjI0OGVmZWQwNGVhYmU2In0=",
+        "expire_date": "2020-08-03T13:23:43.862Z"
+    }
+},
+{
+    "model": "iscae_emploi.classe",
+    "pk": 1,
+    "fields": {
+        "filier": 1,
+        "niveau": 1,
+        "nom": "master 1 miage",
+        "matier_etu": [
+            1,
+            3,
+            7
+        ]
+    }
+},
+{
+    "model": "iscae_emploi.classe",
+    "pk": 2,
+    "fields": {
+        "filier": 1,
+        "niveau": 2,
+        "nom": "M2",
+        "matier_etu": [
+            3,
+            4,
+            5,
+            6
+        ]
+    }
+},
+{
+    "model": "iscae_emploi.classe",
+    "pk": 3,
+    "fields": {
+        "filier": 2,
+        "niveau": 1,
+        "nom": "IRT",
+        "matier_etu": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ]
+    }
+}
