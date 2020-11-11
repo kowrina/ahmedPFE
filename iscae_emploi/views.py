@@ -26,20 +26,55 @@ import  numpy as np
 
 
 
+@login_required(login_url='/')
 def handler404(request,exception = None, templates_name = '404.html'):
     return render(request, '404.html', status=404)
 
+@login_required(login_url='/')
 def handler500(request,exception = None, templates_name = '500.html'):
     return render(request, '500.html', status=500)
 
 
-def index(request):
-    return render(request,'index.html',{})
 
+
+@login_required(login_url='/')
+def index(request):
+
+    profs = Professeur.objects.all()
+    deps = Departement.objects.all()
+    nombre_profs = profs.count()
+    dep1 = deps[0]
+    prof_dep1 = Professeur.objects.filter(dep = dep1)
+    nombre_profs_dep1 = prof_dep1.count()
+    dep1_pourcentage = int(nombre_profs_dep1 * 100 /nombre_profs)
+
+    dep2 = deps[1]
+    prof_dep2 = Professeur.objects.filter(dep = dep2)
+    nombre_profs_dep2 = prof_dep2.count()
+    dep2_pourcentage = int(nombre_profs_dep2 * 100 /nombre_profs)
+
+    dep3 = deps[2]
+    prof_dep3 = Professeur.objects.filter(dep = dep3)
+    nombre_profs_dep3 = prof_dep3.count()
+    dep3_pourcentage = int(nombre_profs_dep3 * 100 /nombre_profs)
+
+    dep4 = deps[3]
+    prof_dep4 = Professeur.objects.filter(dep = dep4)
+    nombre_profs_dep4 = prof_dep4.count()
+    dep4_pourcentage = int(nombre_profs_dep4 * 100 /nombre_profs)
+
+    request.user
+
+    return render(request,'index.html',locals())
+
+
+
+@login_required(login_url='/')
 def config(request):
     return render(request,'config.html',{})
 
 
+@login_required(login_url='/')
 def departement(request):
     departements = Departement.objects.all()
 
@@ -56,6 +91,7 @@ def departement(request):
     return render(request,'departments.html',context)
 
 
+@login_required(login_url='/')
 def prof(request,pk):
     profs = Professeur.objects.filter(dep__id=pk)
     dep = Departement.objects.get(id=pk)
@@ -76,6 +112,7 @@ def prof(request,pk):
 
 
 
+@login_required(login_url='/')
 def dep_matiers(request,pk):
     matier = Matier.objects.filter(dep__id=pk)
     dep = Departement.objects.get(id=pk)
@@ -92,6 +129,7 @@ def dep_matiers(request,pk):
     }
     return render(request,'dep_matier.html',context)
 
+@login_required(login_url='/')
 def classe_matiere(request,pk):
     classe = Classe.objects.get(id=pk)
     matier = classe.matier_etu.all()
@@ -111,6 +149,7 @@ def classe_matiere(request,pk):
     return render(request,'classe_matier.html',context)
 
 
+@login_required(login_url='/')
 def classe_groupe(request,pk):
     groupe = Groupe.objects.filter(classe__id=pk)
     classe = Classe.objects.get(id=pk)
@@ -129,6 +168,7 @@ def classe_groupe(request,pk):
     return render(request,'classe_groupe.html',context)
 
 
+@login_required(login_url='/')
 def filier_classes(request,pk):
     filier_classes = Classe.objects.filter(filier__id=pk)
     filier = Filier.objects.get(id=pk)
@@ -148,6 +188,7 @@ def filier_classes(request,pk):
 
 
 
+@login_required(login_url='/')
 def cours(request):
     cour = Cours.objects.all()
 
@@ -168,6 +209,7 @@ def cours(request):
 
 
 
+@login_required(login_url='/')
 def groupe_cours(request,pk):
     groupe_cours = Cours.objects.filter(groupe__id=pk)
     groupe = Groupe.objects.get(id=pk)
@@ -186,6 +228,7 @@ def groupe_cours(request,pk):
     return render(request,'groupe_cours.html',context)
 
 
+@login_required(login_url='/')
 def groupe_indispo(request,pk):
     g_indsipo =  IndispoGroupe.objects.filter(groupe__id=pk)
     groupe= Groupe.objects.get(id=pk)
@@ -204,6 +247,7 @@ def groupe_indispo(request,pk):
     return render(request,'groupe_indispo.html',context)
 
 
+@login_required(login_url='/')
 def groupe_indispo_creneau(request,pk):
     g_indsipo =  IndispoGroupe.objects.get(id=pk)
     creneau= g_indsipo.créneaux.all()
@@ -223,6 +267,7 @@ def groupe_indispo_creneau(request,pk):
 
 
 
+@login_required(login_url='/')
 def prof_cours(request,pk):
     p_cours =  Cours.objects.filter(prof__id=pk)
 
@@ -239,6 +284,7 @@ def prof_cours(request,pk):
     return render(request,'prof_cours.html',context)
 
 
+@login_required(login_url='/')
 def prof_indispo(request,pk):
     p_indsipo =  IndispoProf.objects.filter(prof__id=pk)
     prof= Professeur.objects.get(id=pk)
@@ -257,6 +303,7 @@ def prof_indispo(request,pk):
     return render(request,'prof_indispo.html',context)
 
 
+@login_required(login_url='/')
 def prof_indispo_creneau(request,pk):
     p_indsipo =  IndispoProf.objects.get(id=pk)
     creneau= p_indsipo.créneaux.all()
@@ -274,6 +321,7 @@ def prof_indispo_creneau(request,pk):
     }
     return render(request,'prof_indispo_creneau.html',context)
 
+@login_required(login_url='/')
 def prof_preferance(request,pk):
     p_preferance =  Preferance_prof.objects.filter(prof__id=pk)
     prof= Professeur.objects.get(id=pk)
@@ -292,6 +340,7 @@ def prof_preferance(request,pk):
     return render(request,'prof_preferance.html',context)
 
 
+@login_required(login_url='/')
 def prof_preferance_creneau(request,pk):
     p_preferance =  Preferance_prof.objects.get(id=pk)
     creneau= p_preferance.créneaux.all()
@@ -310,6 +359,7 @@ def prof_preferance_creneau(request,pk):
     return render(request,'prof_indispo_creneau.html',context)
 
 
+@login_required(login_url='/')
 def salle(request):
     salles = Salle.objects.all()
 
@@ -327,6 +377,7 @@ def salle(request):
 
 
 
+@login_required(login_url='/')
 def filiere(request,pk):
     filieres = Filier.objects.filter(dep__id = pk)
     dep = Departement.objects.get(id = pk)
@@ -347,6 +398,7 @@ def filiere(request,pk):
 
 
 
+@login_required(login_url='/')
 def niveau(request):
     niveaux = Niveau.objects.all()
 
@@ -364,6 +416,7 @@ def niveau(request):
 
 
 
+@login_required(login_url='/')
 def jours(request):
     jour = Jour.objects.all()
 
@@ -379,6 +432,7 @@ def jours(request):
     }
     return render(request,'jours.html',context)
 
+@login_required(login_url='/')
 def creneaux(request):
     creneau = Creneau.objects.all()
 
@@ -395,6 +449,7 @@ def creneaux(request):
     return render(request,'creneaux.html',context)
 
 
+@login_required(login_url='/')
 def j_creneaux(request,pk):
     detail =  DetailCalandrier.objects.get(jour__id=pk)
     creneau = detail.créneaux.all()
@@ -415,6 +470,7 @@ def j_creneaux(request,pk):
 
 
 
+@login_required(login_url='/')
 def calandriers(request):
     cal = CalandrierStandard.objects.all()
 
@@ -430,6 +486,7 @@ def calandriers(request):
     }
     return render(request,'calandriers_Stdr.html',context)
 
+@login_required(login_url='/')
 def detail_c(request,pk):
     detail = DetailCalandrier.objects.filter(calandrier__id=pk)
     cal=CalandrierStandard.objects.get(id=pk)
@@ -448,6 +505,7 @@ def detail_c(request,pk):
     return render(request,'detail_c.html',context)
 
 
+@login_required(login_url='/')
 def c_exception(request,pk):
     exception = ExceptionCalandrier.objects.filter(calandrier__id=pk)
     cal = CalandrierStandard.objects.get(id=pk)
@@ -474,6 +532,7 @@ def c_exception(request,pk):
 
 
 #ajout de departement
+@login_required(login_url='/')
 def dep_ajout(request):
 
     form=DepartementForm()
@@ -492,6 +551,7 @@ def dep_ajout(request):
     return render(request,'dep_ajout.html',context)
 
 #edit de departement
+@login_required(login_url='/')
 def dep_edit(request,pk):
 
     dep=Departement.objects.get(id=pk)
@@ -512,6 +572,7 @@ def dep_edit(request,pk):
     }
     return render(request,'dep_edit.html',context)
 
+@login_required(login_url='/')
 def dep_delete(request,pk):
     dep = Departement.objects.get(id=pk)
 
@@ -526,6 +587,7 @@ def dep_delete(request,pk):
     return render(request,'dep_delete.html',context)
 
 #ajout de niveau
+@login_required(login_url='/')
 def niveau_ajout(request):
 
     form=NiveauForm()
@@ -544,6 +606,7 @@ def niveau_ajout(request):
     return render(request,'niveau_ajout.html',context)
 
 #edit de niveau
+@login_required(login_url='/')
 def niveau_edit(request,pk):
 
     niveau=Niveau.objects.get(id=pk)
@@ -565,6 +628,7 @@ def niveau_edit(request,pk):
     return render(request,'niveau_edit.html',context)
 
 #niveau delete
+@login_required(login_url='/')
 def niveau_delete(request,pk):
     niveau = Niveau.objects.get(id=pk)
 
@@ -581,6 +645,7 @@ def niveau_delete(request,pk):
 
 
 ## ajout de sall
+@login_required(login_url='/')
 def sall_ajout(request):
 
     form=SalleForm()
@@ -601,6 +666,7 @@ def sall_ajout(request):
 
 
 #edit de sall
+@login_required(login_url='/')
 def sall_edit(request,pk):
 
     sall=Salle.objects.get(id=pk)
@@ -623,6 +689,7 @@ def sall_edit(request,pk):
 
 
 #delete de sall
+@login_required(login_url='/')
 def sall_delete(request,pk):
     sall = Salle.objects.get(id=pk)
 
@@ -638,6 +705,7 @@ def sall_delete(request,pk):
 
 
 ## ajout de cal
+@login_required(login_url='/')
 def calandrier_ajout(request):
     form=CalandrierForm()
     if request.method == 'POST':
@@ -657,6 +725,7 @@ def calandrier_ajout(request):
 
 
 #edit de calandrier
+@login_required(login_url='/')
 def calandrier_edit(request,pk):
 
     cal=CalandrierStandard.objects.get(id=pk)
@@ -679,6 +748,7 @@ def calandrier_edit(request,pk):
 
 
 #delete de calandrier
+@login_required(login_url='/')
 def calandrier_delete(request,pk):
     cal = CalandrierStandard.objects.get(id=pk)
 
@@ -695,6 +765,7 @@ def calandrier_delete(request,pk):
 
 #ajout detail
 
+@login_required(login_url='/')
 def detail_c_ajout(request,pk):
 
     cal = CalandrierStandard.objects.get(id=pk)
@@ -720,6 +791,7 @@ def detail_c_ajout(request,pk):
 
 
 #edit de detail
+@login_required(login_url='/')
 def detail_c_edit(request,pk):
 
     detail=DetailCalandrier.objects.get(id=pk)
@@ -743,6 +815,7 @@ def detail_c_edit(request,pk):
 
 
 #delete de detail
+@login_required(login_url='/')
 def detail_c_delete(request,pk):
     detail = DetailCalandrier.objects.get(id=pk)
     cal=detail.calandrier
@@ -759,6 +832,7 @@ def detail_c_delete(request,pk):
 
 
 ## ajout de creneau
+@login_required(login_url='/')
 def creneau_ajout(request):
 
     form=CreneauForm()
@@ -780,6 +854,7 @@ def creneau_ajout(request):
 
 
 #edit de creneau
+@login_required(login_url='/')
 def creneau_edit(request,pk):
 
     creneau=Creneau.objects.get(id=pk)
@@ -802,6 +877,7 @@ def creneau_edit(request,pk):
 
 
 #delete de Creneau
+@login_required(login_url='/')
 def creneau_delete(request,pk):
     creneau = Creneau.objects.get(id=pk)
 
@@ -817,6 +893,7 @@ def creneau_delete(request,pk):
 
 #ajout matiere
 
+@login_required(login_url='/')
 def matier_ajout(request,pk):
 
     dep = Departement.objects.get(id=pk)
@@ -842,6 +919,7 @@ def matier_ajout(request,pk):
 
 
 #edit de matiere
+@login_required(login_url='/')
 def matier_edit(request,pk):
 
     matier=Matier.objects.get(id=pk)
@@ -865,6 +943,7 @@ def matier_edit(request,pk):
 
 
 #delete de matiere
+@login_required(login_url='/')
 def matier_delete(request,pk):
     matier = Matier.objects.get(id=pk)
     dep = matier.dep
@@ -883,6 +962,7 @@ def matier_delete(request,pk):
 
 #ajout prof
 
+@login_required(login_url='/')
 def prof_ajout(request,pk):
 
     dep = Departement.objects.get(id=pk)
@@ -908,6 +988,7 @@ def prof_ajout(request,pk):
 
 
 #edit de prof
+@login_required(login_url='/')
 def prof_edit(request,pk):
 
     prof=Professeur.objects.get(id=pk)
@@ -931,6 +1012,7 @@ def prof_edit(request,pk):
 
 
 #delete de prof
+@login_required(login_url='/')
 def prof_delete(request,pk):
     prof = Professeur.objects.get(id=pk)
     dep=prof.dep
@@ -948,6 +1030,7 @@ def prof_delete(request,pk):
 
 #ajout prof_indispo_
 
+@login_required(login_url='/')
 def prof_indispo_ajout(request,pk):
     prof = Professeur.objects.get(id=pk)
 
@@ -973,6 +1056,7 @@ def prof_indispo_ajout(request,pk):
 
 
 #edit de prof_indispo_
+@login_required(login_url='/')
 def prof_indispo_edit(request,pk):
 
     indispo=IndispoProf.objects.get(id=pk)
@@ -1003,6 +1087,7 @@ def prof_indispo_edit(request,pk):
 
 
 #delete de indispo prof
+@login_required(login_url='/')
 def prof_indispo_delete(request,pk):
     indispo = IndispoProf.objects.get(id=pk)
     prof = indispo.prof
@@ -1021,6 +1106,7 @@ def prof_indispo_delete(request,pk):
 
 #ajout prof_preferance_
 
+@login_required(login_url='/')
 def prof_preferance_ajout(request,pk):
     prof = Professeur.objects.get(id=pk)
 
@@ -1044,6 +1130,7 @@ def prof_preferance_ajout(request,pk):
 
 
 #edit de prof_preferance
+@login_required(login_url='/')
 def prof_preferance_edit(request,pk):
 
     preferance=IndispoProf.objects.get(id=pk)
@@ -1068,6 +1155,7 @@ def prof_preferance_edit(request,pk):
 
 
 #delete de preferance prof
+@login_required(login_url='/')
 def prof_preferance_delete(request,pk):
     preferance = Preferance_prof.objects.get(id=pk)
     prof = preferance.prof
@@ -1085,6 +1173,7 @@ def prof_preferance_delete(request,pk):
 
 #ajout filiere
 
+@login_required(login_url='/')
 def filier_ajout(request,pk):
 
     dep = Departement.objects.get(id=pk)
@@ -1108,6 +1197,7 @@ def filier_ajout(request,pk):
 
 
 #edit de filiere
+@login_required(login_url='/')
 def filier_edit(request,pk):
 
     filier=Filier.objects.get(id=pk)
@@ -1131,6 +1221,7 @@ def filier_edit(request,pk):
 
 
 #delete de filiere
+@login_required(login_url='/')
 def filier_delete(request,pk):
     filier=Filier.objects.get(id=pk)
     dep=filier.dep
@@ -1149,6 +1240,7 @@ def filier_delete(request,pk):
 
 #ajout classe
 
+@login_required(login_url='/')
 def classe_ajout(request,pk):
     filier = Filier.objects.get(id=pk)
 
@@ -1171,6 +1263,7 @@ def classe_ajout(request,pk):
 
 
 #edit de classe
+@login_required(login_url='/')
 def classe_edit(request,pk):
 
     classe=Classe.objects.get(id=pk)
@@ -1194,6 +1287,7 @@ def classe_edit(request,pk):
 
 
 #delete de classe
+@login_required(login_url='/')
 def classe_delete(request,pk):
     classe=Classe.objects.get(id=pk)
     filier=classe.filier
@@ -1212,6 +1306,7 @@ def classe_delete(request,pk):
 
 
 ## ajout de jour
+@login_required(login_url='/')
 def joure_ajout(request):
 
     form=JourForm()
@@ -1232,6 +1327,7 @@ def joure_ajout(request):
 
 
 #edit de jour
+@login_required(login_url='/')
 def joure_edit(request,pk):
 
     jour=Jour.objects.get(id=pk)
@@ -1254,6 +1350,7 @@ def joure_edit(request,pk):
 
 
 #delete de jour
+@login_required(login_url='/')
 def joure_delete(request,pk):
 
     jour = Jour.objects.get(id=pk)
@@ -1271,6 +1368,7 @@ def joure_delete(request,pk):
 
 #ajout cours
 
+@login_required(login_url='/')
 def cours_ajout(request,pk):
     groupe = Groupe.objects.get(id=pk)
 
@@ -1293,6 +1391,7 @@ def cours_ajout(request,pk):
 
 
 #edit de cours
+@login_required(login_url='/')
 def cours_edit(request,pk):
 
     cours=Cours.objects.get(id=pk)
@@ -1316,6 +1415,7 @@ def cours_edit(request,pk):
 
 
 #delete de cours
+@login_required(login_url='/')
 def cours_delete(request,pk):
     cours=Cours.objects.get(id=pk)
 
@@ -1332,6 +1432,7 @@ def cours_delete(request,pk):
 
 #ajout groupe
 
+@login_required(login_url='/')
 def groupe_ajout(request,pk):
 
     classe = Classe.objects.get(id=pk)
@@ -1355,6 +1456,7 @@ def groupe_ajout(request,pk):
 
 
 #edit de filiere
+@login_required(login_url='/')
 def groupe_edit(request,pk):
 
     groupe=Groupe.objects.get(id=pk)
@@ -1378,6 +1480,7 @@ def groupe_edit(request,pk):
 
 
 #delete de groupe
+@login_required(login_url='/')
 def groupe_delete(request,pk):
     groupe=Groupe.objects.get(id=pk)
     classe=groupe.classe
@@ -1396,6 +1499,7 @@ def groupe_delete(request,pk):
 
 #ajout groupe_indispo_
 
+@login_required(login_url='/')
 def groupe_indispo_ajout(request,pk):
     groupe = Groupe.objects.get(id=pk)
 
@@ -1421,6 +1525,7 @@ def groupe_indispo_ajout(request,pk):
 
 
 #edit de groupe_indispo_
+@login_required(login_url='/')
 def groupe_indispo_edit(request,pk):
 
     indispo=IndispoGroupe.objects.get(id=pk)
@@ -1448,6 +1553,7 @@ def groupe_indispo_edit(request,pk):
 
 
 #delete de groupe_indispo_
+@login_required(login_url='/')
 def groupe_indispo_delete(request,pk):
     indispo = IndispoGroupe.objects.get(id=pk)
     groupe = indispo.groupe
@@ -1466,6 +1572,7 @@ def groupe_indispo_delete(request,pk):
 
 #ajout cal_exception
 
+@login_required(login_url='/')
 def cal_exception_ajout(request,pk):
     cal = CalandrierStandard.objects.get(id=pk)
 
@@ -1490,6 +1597,7 @@ def cal_exception_ajout(request,pk):
 
 
 #edit de cal_exception
+@login_required(login_url='/')
 def cal_exception_edit(request,pk):
 
     cal_exception = ExceptionCalandrier.objects.get(id=pk)
@@ -1514,6 +1622,7 @@ def cal_exception_edit(request,pk):
 
 
 #delete de cal_exception
+@login_required(login_url='/')
 def cal_exception_delete(request,pk):
     cal_exception = ExceptionCalandrier.objects.get(id=pk)
     cal = cal_exception.calandrier
@@ -1532,6 +1641,7 @@ def cal_exception_delete(request,pk):
 
 
 #ajout de seance
+@login_required(login_url='/')
 def seance_ajout(request,pk):
 
     form=SeanceForm()
@@ -1553,6 +1663,7 @@ def seance_ajout(request,pk):
     return render(request,'seance_ajout.html',context)
 
 #edit de seance
+@login_required(login_url='/')
 def seance_edit(request,pk):
 
     seance=Seance.objects.get(id=pk)
@@ -1576,6 +1687,7 @@ def seance_edit(request,pk):
     }
     return render(request,'seance_edit.html',context)
 
+@login_required(login_url='/')
 def seance_delete(request,pk):
     seance = Seance.objects.get(id=pk)
 
@@ -1591,6 +1703,7 @@ def seance_delete(request,pk):
 
 
 #chevauchement d'une classe
+@login_required(login_url='/')
 def chevauch(request,pk):
     classe = Classe.objects.get(id=pk)
     ch = GroupeChevauchement.objects.filter(classe_id=pk)
@@ -1611,6 +1724,7 @@ def chevauch(request,pk):
 
 
 #ajout de chevauchment
+@login_required(login_url='/')
 def chevauch_ajout(request,pk):
     classe = Classe.objects.get(id=pk)
     grp = Groupe.objects.filter(classe_id=pk)
@@ -1638,6 +1752,7 @@ def chevauch_ajout(request,pk):
 
 
 #edit de chevauch
+@login_required(login_url='/')
 def chevauch_edit(request,pk):
 
     ch = GroupeChevauchement.objects.get(id=pk)
@@ -1659,6 +1774,7 @@ def chevauch_edit(request,pk):
     }
     return render(request,'chevauch_edit.html',context)
 
+@login_required(login_url='/')
 def chevauch_delete(request,pk):
     ch = GroupeChevauchement.objects.get(id=pk)
 
@@ -1676,6 +1792,7 @@ def chevauch_delete(request,pk):
 
 
 
+@login_required(login_url='/')
 def seance(request,pk):
 
     date = datetime.today()
@@ -1761,6 +1878,7 @@ def seance(request,pk):
                              bottom=Side(border_style='double',color='FF000000')
                              )
         fill_cell = PatternFill(fill_type=fills.FILL_SOLID,start_color='00FFFF00',end_color='00FFFF00')
+
 
         def column_Number(i):
             return 3 + i//23
@@ -1906,6 +2024,7 @@ def seance(request,pk):
 
 
 
+@login_required(login_url='/')
 def seance_download(request):
     # fill these variables with real values
     fl_path = 'D:/ahmed PFE/emploi/emploi/groupe_semaine_Emploi.csv'
@@ -1926,11 +2045,13 @@ def seance_download(request):
 
 
 
+@login_required(login_url='/')
 def emploi(request,pk):
     classe = Classe.objects.get(id = pk)
 
     nombre_creneaux = 0
     date_valide = []
+
 
     def n_creneaux(li):
         jour_numero = [0,1,2,3]
@@ -1945,6 +2066,7 @@ def emploi(request,pk):
         return  n
 
     context={}
+
     def generation(n_creneaux,d_debut,d_fin,pk):
 
         classe = Classe.objects.filter(id=pk)
@@ -2050,6 +2172,7 @@ def emploi(request,pk):
                              )
         fill_cell = PatternFill(fill_type=fills.FILL_SOLID,start_color='00FFFF00',end_color='00FFFF00')
 
+
         def column_Number(i):
             return 3 + i//22
 
@@ -2141,6 +2264,7 @@ def emploi(request,pk):
 
         #disponibiliter de l'enseignant *****************
         jour_numero = [0,1,2,3]
+
         def nn_creneaux(li):
 
             b=0
@@ -2440,6 +2564,7 @@ def emploi(request,pk):
 
 
 
+@login_required(login_url='/')
 def emploi_generation(request,pk):
 
     courss = Cours.objects.filter(groupe_id=pk)
@@ -2513,6 +2638,7 @@ def emploi_generation(request,pk):
                          bottom=Side(border_style='double',color='FF000000')
                          )
     fill_cell = PatternFill(fill_type=fills.FILL_SOLID,start_color='00FFFF00',end_color='00FFFF00')
+
 
     def column_Number(i):
         return 3 + i//23

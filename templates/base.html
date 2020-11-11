@@ -82,6 +82,9 @@
                 <a href="#"><img class="main-logo"  src="{% static 'static_file/img/logo/logo1.png ' %}" style="width:130px;heigth:40px"alt="" /></a>
                 <strong><a href="#"><img src="{% static 'static_file/img/logo/logosn.png ' %}" alt="" /></a></strong>
             </div>
+
+
+
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
@@ -161,7 +164,28 @@
 												</button>
                                         </div>
                                     </div>
+                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
 
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+
+															<span class="admin-name">Bonjour {{ user.get_username }}</span>
+															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+														</a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <li><a href="{% url 'admin:auth_user_change' user.id %}"><span class="edu-icon edu-home-admin author-log-ic"></span>Mon Compte</a>
+                                                        </li>
+
+                                                        <li><a href="{% url 'user:logout'  %}"><span class="edu-icon edu-locked author-log-ic"></span>Se déconnecter</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -170,6 +194,7 @@
             </div>
 
         </div>
+
 
 
 

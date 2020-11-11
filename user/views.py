@@ -28,8 +28,8 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return render(request, 'user/logout.html', {
-        'title': 'تسجيل الخروج'
+    return render(request, 'user/login.html', {
+        'title': 'Deconnexion'
     })
 
 

@@ -4,6 +4,84 @@
 
 {% block body %}
 
+<div class="all-content-wrapper">
+
+    <div class="dashtwo-order-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="analytics-edu-wrap ant-res-b-30 reso-mg-b-30">
+                            <div class="skill-content-3 analytics-edu">
+                                <div class="skill">
+                                    <div class="progress">
+                                        <div class="lead-content">
+                                            <h3><span class="counter">Dep: {{dep1.nom}} </span></h3>
+                                            <p>Professeurs : {{ nombre_profs_dep1 }} </p>
+                                        </div>
+                                        <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                                            <span>{{ dep1_pourcentage }}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="analytics-edu-wrap reso-mg-b-30">
+                            <div class="skill-content-3 analytics-edu analytics-edu4">
+                                <div class="skill">
+                                    <div class="progress">
+                                        <div class="lead-content">
+                                            <h3><span class="counter">Dep: {{dep2.nom}}</span></h3>
+                                            <p>Professeurs: {{ nombre_profs_dep2 }}</p>
+                                        </div>
+                                        <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                                            <span>{{ dep2_pourcentage }}%</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="analytics-edu-wrap reso-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
+                            <div class="skill-content-3 analytics-edu analytics-edu3">
+                                <div class="skill">
+                                    <div class="progress progress-bt">
+                                        <div class="lead-content">
+                                            <h3><span class="counter">Dep: {{dep3.nom}}</span></h3>
+                                            <p>Professeurs : {{ nombre_profs_dep3 }}</p>
+                                        </div>
+                                        <div class="progress-bar wow fadeInLeft" data-progress="80%" style="width: 80%;" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                                            <span>{{ dep3_pourcentage }}%</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="analytics-edu-wrap res-tablet-mg-t-30 dk-res-t-pro-30">
+                            <div class="skill-content-3 analytics-edu analytics-edu2">
+                                <div class="skill">
+                                    <div class="progress progress-bt">
+                                        <div class="lead-content">
+                                            <h3><span class="counter">Dep: {{dep4.nom}}</span></h3>
+                                            <p>Professeurs : {{ nombre_profs_dep4 }}</p>
+                                        </div>
+                                        <div class="progress-bar wow fadeInLeft" data-progress="93%" style="width: 93%;" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                                            <span>{{ dep4_pourcentage }}%</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+
 
 
 {% endblock body %}
