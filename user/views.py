@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from .forms import LoginForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -11,6 +13,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def login_user(request):
     print('********')
     title = "Login"
+    message = ""
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -20,17 +23,13 @@ def login_user(request):
             login(request, user)
             return redirect('iscae_emploi/index/')
         else:
-            messages.warning(
-                request, 'هناك خطأ في اسم المستخدم أو كلمة المرور.')
+            message = "il ya une erreur du nom ou du mots de passe"
 
     return render(request, 'user/login.html',locals())
 
 
 def logout_user(request):
     logout(request)
-    return render(request, 'user/login.html', {
-        'title': 'Deconnexion'
-    })
-
+    return redirect('/')
 
 

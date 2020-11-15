@@ -76,10 +76,14 @@
 
 
    <div class="error-pagewrap">
+
 		<div class="error-page-int">
 			<div class="text-center m-b-md custom-login">
 				<h3>Connection</h3>
 				<p>Generation d'emploi du temps</p>
+                {% if message  %}
+                 <span class="alert alert-danger">{{ message }}</span>
+                {%endif%}
 			</div>
 			<div class="content-error">
 				<div class="hpanel">

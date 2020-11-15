@@ -41,7 +41,7 @@ class Cours(models.Model):
     def __str__(self):
         return self.nom
     class Meta:
-        unique_together = (('groupe','matier','prof','salle'))
+        #unique_together = (('groupe','matier','prof','salle'))
         verbose_name_plural = "cours"
 
 class Departement(models.Model):

@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
 
 
@@ -1997,7 +1997,7 @@ def seance(request,pk):
         ws1['A1']='Jours'
         ws1['B1']='Heurs'
 
-        wb.save('groupe_semaine_Emploi.csv')
+        wb.save('groupe_semaine_Emploi.xlsx')
 
 
         return render(request,'seance.html',{'seance':seance,
@@ -2023,21 +2023,26 @@ def seance(request,pk):
 
 
 
+#
+# @login_required(login_url='/')
+# def seance_download(request):
+#     # fill these variables with real values
+#     fl_path = 'D:/ahmed PFE/emploi/emploi/cv.pdf'
+#     filename = 'cv.pdf'
+#
+#     fl = open(fl_path,'r',errors='ignore')
+#
+#     mime_type, _ = mimetypes.guess_type(fl_path)
+#     response = HttpResponse(fl, content_type=mime_type)
+#     response['Content-Disposition'] = "attachment; filename=%s" % filename
+#     return response
 
-@login_required(login_url='/')
+
 def seance_download(request):
-    # fill these variables with real values
-    fl_path = 'D:/ahmed PFE/emploi/emploi/groupe_semaine_Emploi.csv'
-    filename = 'groupe_semaine_Emploi.csv'
-
-    fl = open(fl_path,'r',errors='ignore')
-
-    mime_type, _ = mimetypes.guess_type(fl_path)
-    response = HttpResponse(fl, content_type=mime_type)
-    response['Content-Disposition'] = "attachment; filename=%s" % filename
-    return response
-
-
+    try:
+        return FileResponse(open('D:/ahmed PFE/emploi/emploi/pes_Emploi.xlsx','rb'),content_type='application/xlsx')
+    except FileNotFoundError:
+        return HttpResponse("ficher n'est pas trouver ...")
 
 
 
@@ -2067,10 +2072,21 @@ def emploi(request,pk):
 
     context={}
 
+
+
     def generation(n_creneaux,d_debut,d_fin,pk):
 
         classe = Classe.objects.filter(id=pk)
         print('**************************************************************************************')
+
+
+
+        seances = Seance.objects.filter(date__range=[date_debut, date_fin])
+        for t in seances:
+            print(t.date, t.créneau, t.cours.prof.id)
+
+
+
 
         groupes = Cours.objects.filter(groupe__classe_id=pk).values_list('groupe' ,flat=True)
         print(groupes)
@@ -2277,6 +2293,10 @@ def emploi(request,pk):
                     b = b + 2
             return  b
 
+
+
+        # disponibilite de prof
+
         d = np.zeros((p,h))
         print(p,h)
         for i in range(0,p):
@@ -2284,8 +2304,21 @@ def emploi(request,pk):
                 d[i,j]=1
         print(d)
 
+        #seances deja programmer
+        seance_prof_indispo = []
 
 
+        for t in seances:
+            if t.cours.prof in g_prof:
+                if t.date in date_valide:
+                    l = pd.date_range(date_debut, t.date, freq='D')
+                    b = nn_creneaux(l)
+                    if t.date.weekday() in jour_numero:
+                        d[g_prof.index(t.cours.prof),b-(5-t.créneau.numero)-1]=0
+                    elif t.date.weekday()==4:
+                        d[g_prof.index(t.cours.prof),b-(2-t.créneau.numero)-1]=0
+        print("*********seances deja programmer*********")
+        print(d)
 
         for i in g_prof_indispo:
             print(i)
@@ -2463,8 +2496,12 @@ def emploi(request,pk):
                         g1 = sum(x[(i1, j, l, k)] for j in range(1,m+1) for l in range(1,p+1) )
                         g2 = sum(x[(i2, j, l, k)] for j in range(1,m+1) for l in range(1,p+1))
                         solver.Add(g1 + g2  <= 1)
+        print('Solution: *****************888')
+        try:
+          solver.Solve()
+        except:
+             print("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror")
 
-        solver.Solve()
 
 
 
@@ -2786,10 +2823,10 @@ def emploi_generation(request,pk):
                     g1 = sum(x[(i1, j, l, k)] for j in range(1,m+1) for l in range(1,p+1) )
                     g2 = sum(x[(i2, j, l, k)] for j in range(1,m+1) for l in range(1,p+1))
                     solver.Add(g1 + g2  <= 1)
-
+    print('Solution:')
     solver.Solve()
 
-    print('Solution:')
+
 
     for i in range(1,n+1) :
         for j in  range(1,m+1):
