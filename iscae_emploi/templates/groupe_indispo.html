@@ -30,13 +30,21 @@
                             <div class="asset-inner">
                                 <table>
                                     <tr>
-                                        <th>Date</th>
+                                        <th>Date debut</th>
+                                        <th>Date fin</th>
+
                                         <th>Action</th>
                                     </tr>
                                     {% for g in g_indispo %}
                                     <tr>
-                                        <td>{{g.date}}</td>
+                                        <td>{{g.date_debut}}</td>
+                                        <td>{{g.date_fin}}</td>
+
+
                                         <td>
+                                            <button type="button" class="btn btn-custon-rounded-three btn-default">
+                                                <a href="{% url 'iscae_emploi:groupe_indispo_jours' g.id %}" ><i class="fab fa-dashcube" ></i> Jours</a>
+                                           </button>
                                             <button type="button" class="btn btn-custon-rounded-three btn-default">
                                                 <a href="{% url 'iscae_emploi:groupe_indispo_creneau' g.id %}" ><i class="fa fa-hourglass-half" ></i> Créneaux</a>
                                            </button>

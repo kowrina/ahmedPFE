@@ -43,25 +43,26 @@ def index(request):
     profs = Professeur.objects.all()
     deps = Departement.objects.all()
     nombre_profs = profs.count()
-    dep1 = deps[0]
-    prof_dep1 = Professeur.objects.filter(dep = dep1)
-    nombre_profs_dep1 = prof_dep1.count()
-    dep1_pourcentage = int(nombre_profs_dep1 * 100 /nombre_profs)
+    if deps.exists():
+        dep1 = deps[0]
+        prof_dep1 = Professeur.objects.filter(dep = dep1)
+        nombre_profs_dep1 = prof_dep1.count()
+        dep1_pourcentage = int(nombre_profs_dep1 * 100 /nombre_profs)
 
-    dep2 = deps[1]
-    prof_dep2 = Professeur.objects.filter(dep = dep2)
-    nombre_profs_dep2 = prof_dep2.count()
-    dep2_pourcentage = int(nombre_profs_dep2 * 100 /nombre_profs)
+        dep2 = deps[1]
+        prof_dep2 = Professeur.objects.filter(dep = dep2)
+        nombre_profs_dep2 = prof_dep2.count()
+        dep2_pourcentage = int(nombre_profs_dep2 * 100 /nombre_profs)
 
-    dep3 = deps[2]
-    prof_dep3 = Professeur.objects.filter(dep = dep3)
-    nombre_profs_dep3 = prof_dep3.count()
-    dep3_pourcentage = int(nombre_profs_dep3 * 100 /nombre_profs)
+        dep3 = deps[2]
+        prof_dep3 = Professeur.objects.filter(dep = dep3)
+        nombre_profs_dep3 = prof_dep3.count()
+        dep3_pourcentage = int(nombre_profs_dep3 * 100 /nombre_profs)
 
-    dep4 = deps[3]
-    prof_dep4 = Professeur.objects.filter(dep = dep4)
-    nombre_profs_dep4 = prof_dep4.count()
-    dep4_pourcentage = int(nombre_profs_dep4 * 100 /nombre_profs)
+        dep4 = deps[3]
+        prof_dep4 = Professeur.objects.filter(dep = dep4)
+        nombre_profs_dep4 = prof_dep4.count()
+        dep4_pourcentage = int(nombre_profs_dep4 * 100 /nombre_profs)
 
     request.user
 
@@ -264,6 +265,24 @@ def groupe_indispo_creneau(request,pk):
 
     }
     return render(request,'groupe_indispo_creneau.html',context)
+
+@login_required(login_url='/')
+def groupe_indispo_jours(request,pk):
+    g_indsipo =  IndispoGroupe.objects.get(id=pk)
+    jour= g_indsipo.jours.all()
+
+    pagination = Paginator(jour,per_page=5)
+    page_number = request.GET.get('page',1)
+    page_obj = pagination.get_page(page_number)
+
+    context = {
+        'title': 'prof indispo Creneau',
+        'jour':page_obj.object_list,
+        'pagination':pagination,
+        'page_number': int(page_number),
+
+    }
+    return render(request,'groupe_indispo_jour.html',context)
 
 
 
@@ -780,6 +799,7 @@ def detail_c_ajout(request,pk):
             detail = form.save(commit=False)
             detail.calandrier=cal
             detail.save()
+            form.save_m2m()
         return redirect('/iscae_emploi/detail_c/%i' %pk)
 
     context = {
@@ -1395,6 +1415,7 @@ def cours_ajout(request,pk):
 def cours_edit(request,pk):
 
     cours=Cours.objects.get(id=pk)
+    groupe=cours.groupe
 
     form=CoursForm(instance=cours)
 
@@ -1402,7 +1423,7 @@ def cours_edit(request,pk):
         form = CoursForm(request.POST,instance=cours)
         if form.is_valid():
             form.save()
-            return redirect('/iscae_emploi/Cours')
+            return redirect('/iscae_emploi/groupe_cours/%i'%groupe.id)
     else:
         form = CoursForm(instance=cours)
 
@@ -1510,7 +1531,8 @@ def groupe_indispo_ajout(request,pk):
 
             indispo = form.save(commit=False)
             indispo.groupe=groupe
-            indispo.date= request.POST['date']
+            indispo.date_debut= request.POST['date_debut']
+            indispo.date_fin= request.POST['date_fin']
             indispo.save()
             form.save_m2m()
         return redirect('/iscae_emploi/groupe_indispo/%i' %pk)
@@ -2102,7 +2124,7 @@ def emploi(request,pk):
             g = IndispoGroupe.objects.filter(groupe_id = p)
             groupe_indispo.append(g)
             for i in g:
-                print(i.groupe , i.date)
+                print(i.groupe , i.date_debut,i.date_fin)
                 for j in i.créneaux.all():
                     print(j.numero)
 
@@ -2410,26 +2432,33 @@ def emploi(request,pk):
         print(dg)
 
 
+
         for i in groupe_indispo:
             for j in i:
-                if j.date in date_valide:
-                    l = pd.date_range(date_debut, j.date, freq='D')
+                if date_debut < j.date_debut and j.date_fin < date_fin :
+                    indispo_creneau = j.créneaux.all()
+                    l = pd.date_range(j.date_debut, j.date_fin, freq='D')
                     b = nn_creneaux(l)
 
-                    print(j.date ,j.date.weekday(), b)
-                    print('index'+ str(groupe_indispo.index(i)))
+                    l2 = pd.date_range(date_debut , j.date_debut,  freq='D')
+                    counter = nn_creneaux(l2)
+                    b2 = counter - 5
 
-                    if j.date.weekday() in jour_numero:
-                        print(j.créneaux.all())
-                        for y in j.créneaux.all():
+                    print(j.date_debut ,j.date_debut.weekday(), b)
+                    print('index-------------->>  '+ str(groupe_indispo.index(i)))
 
-                            print('numero du creneaux'+str(y.numero))
-                            dg[groupe_indispo.index(i),b-(5-y.numero)-1]=0
-                    elif j.date.weekday() == 4 :
-                        for y in j.créneaux.all():
-                            if y.numero < 3:
-                                print(groupe_indispo.index(i),b,y.numero)
-                                dg[groupe_indispo.index(i),b-(2-y.numero)-1]=0
+                    for gg in l:
+                        if gg.weekday() in jour_numero:
+                            print(j.créneaux.all())
+                            for y in indispo_creneau:
+
+                                print('numero du creneaux'+str(y.numero))
+                                dg[groupe_indispo.index(i),b-(5-y.numero)-1]=0
+                        elif j.date.weekday() == 4 :
+                            for y in j.créneaux.all():
+                                if y.numero < 3:
+                                    print(groupe_indispo.index(i),b,y.numero)
+                                    dg[groupe_indispo.index(i),b-(2-y.numero)-1]=0
         print(dg)
 
 

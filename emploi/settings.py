@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'widget_tweaks',
     'django_filters',
+    'tempus_dominus',
 
 ]
 

@@ -110,10 +110,12 @@ urlpatterns = [
     path('dep_matiers/<int:pk>/',views.dep_matiers , name='dep_matiers'),
     path('filier_classes/<int:pk>/',views.filier_classes , name='filier_classes'),
     path('classe_groupe/<int:pk>/',views.classe_groupe , name='classe_groupe'),
+    path('classe_matiere/<int:pk>/',views.classe_matiere , name='classe_matiere'),
+
     path('groupe_cours/<int:pk>/',views.groupe_cours , name='groupe_cours'),
     path('groupe_indispo/<int:pk>/',views.groupe_indispo , name='groupe_indispo'),
     path('groupe_indispo_creneau/<int:pk>/',views.groupe_indispo_creneau , name='groupe_indispo_creneau'),
-    path('classe_matiere/<int:pk>/',views.classe_matiere , name='classe_matiere'),
+    path('groupe_indispo_jours/<int:pk>/',views.groupe_indispo_jours , name='groupe_indispo_jours'),
     path('prof_cours/<int:pk>/',views.prof_cours , name='prof_cours'),
     path('prof_indispo/<int:pk>/',views.prof_indispo , name='prof_indispo'),
     path('prof_indispo_creneau/<int:pk>/',views.prof_indispo_creneau , name='prof_indispo_creneau'),

@@ -19,7 +19,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                            <form action="{% url 'iscae_emploi:prof_indispo_delete' item.id%}" method="POST">
+                                            <form action="{% url 'iscae_emploi:groupe_indispo_delete' item.id%}" method="POST">
                                                 {% csrf_token %}
                                                 <p>confirmer la suppression du L'indispo  "{{item}}"</p>
 

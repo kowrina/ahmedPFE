@@ -31,6 +31,14 @@ class Creneau(models.Model):
 
 class Cours(models.Model):
     nom = models.CharField(max_length=100, blank=False , default=None, null=False)
+
+    TYPE_CHOICES = (
+        ('Cours magistrale','Cours magistrale'),
+        ('Travaux dirigés','Travaux dirigés'),
+        ('travaux pratiques','travaux pratiques'),
+    )
+    type = models.CharField(max_length=20,choices=TYPE_CHOICES, unique=False)
+
     groupe = models.ForeignKey('Groupe', on_delete=models.CASCADE,blank=False , default=None, null=False)
     matier = models.ForeignKey('Matier', on_delete=models.CASCADE,blank=False , default=None, null=False)
     prof = models.ForeignKey('Professeur', on_delete=models.CASCADE,blank=False , default=None, null=False)
@@ -41,7 +49,7 @@ class Cours(models.Model):
     def __str__(self):
         return self.nom
     class Meta:
-        #unique_together = (('groupe','matier','prof','salle'))
+
         verbose_name_plural = "cours"
 
 class Departement(models.Model):
@@ -162,8 +170,11 @@ class ExceptionCalandrier(models.Model):
 
 class IndispoProf(models.Model):
     prof = models.ForeignKey(Professeur,on_delete=models.CASCADE)
+    date_debut = models.DateField(blank=False ,  null=False)
+    date_fin = models.DateField(blank=False ,  null=False)
+    jours = models.ManyToManyField(Jour)
     créneaux = models.ManyToManyField(Creneau)
-    date = models.DateField(blank=False , default=None, null=False)
+
 
     def __str__(self):
         return '%s' %(self.prof.nom)
@@ -173,8 +184,8 @@ class IndispoProf(models.Model):
 
 class IndispoGroupe(models.Model):
     groupe = models.ForeignKey(Groupe,on_delete=models.CASCADE)
-    date_debut = models.DateField(blank=False , default=None, null=False)
-    date_fin = models.DateField(blank=True , default=True, null=True)
+    date_debut = models.DateField(blank=False , null=False)
+    date_fin = models.DateField(blank=False ,  null=False)
     jours = models.ManyToManyField(Jour)
     créneaux = models.ManyToManyField(Creneau)
 

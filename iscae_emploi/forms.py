@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import DateInput
+
 from .models import *
 
 
@@ -55,7 +57,7 @@ class CoursForm(forms.ModelForm):
 
     class Meta:
         model = Cours
-        fields = ['nom','prof','matier','salle','charge']
+        fields = ['nom','type','prof','matier','salle','charge']
 
 
 class GroupeForm(forms.ModelForm):
@@ -125,9 +127,24 @@ class IndispoprofForm(forms.ModelForm):
 
 class IndispogroupeForm(forms.ModelForm):
 
+
     class Meta:
         model = IndispoGroupe
-        fields = ['créneaux']
+        fields = ['jours','créneaux']
+        date_debut = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        }))
+        date_fin = forms.DateTimeField(
+            input_formats=['%d/%m/%Y %H:%M'],
+            widget=forms.DateTimeInput(attrs={
+                'class': 'form-control datetimepicker-input',
+                'data-target': '#datetimepicker2'
+            }))
+
+
 
 class CalandrierForm(forms.ModelForm):
 

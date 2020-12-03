@@ -10,7 +10,18 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
+
 		============================================ -->
+<!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js" integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'static_file/img/favicon.ico ' %}">
     <!-- Google Fonts
 		============================================ -->
@@ -92,26 +103,26 @@
                             <a class="has-arrow" href="all-professors.html" aria-expanded="false"><i class="fa fa-home"></i><span class="mini-click-non">  Emploi</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                             <li>
-                            <a title="Liste de Departement" href="{% url 'iscae_emploi:dp' %}"><i class="fa fa-building"></i><span class="mini-sub-pro">  Département</span></a>
+                            <a title="Liste de Departement" href="{% url 'iscae_emploi:dp' %}"><i class="fa fa-building"></i><span class="mini-sub-pro">  Départements</span></a>
                         </li>
 
 
 
                         <li>
-                            <a title="touts les salle" href="{% url 'iscae_emploi:salle' %}"><i class="fa fa-house-user"></i><span class="mini-sub-pro">  Salle</span></a>
+                            <a title="touts les salle" href="{% url 'iscae_emploi:salle' %}"><i class="fa fa-house-user"></i><span class="mini-sub-pro">  Salles</span></a>
                         </li>
 
 
                         <li>
-                            <a title="les niveaux" href="{% url 'iscae_emploi:niveau' %}"><i class="fa fa-layer-group"></i><span class="mini-sub-pro">  Niveau</span></a>
+                            <a title="les niveaux" href="{% url 'iscae_emploi:niveau' %}"><i class="fa fa-layer-group"></i><span class="mini-sub-pro">  Niveaux</span></a>
                         </li>
 
                         <li>
-                            <a title="les jours ouvrable" href="{% url 'iscae_emploi:jours' %}"><i class="fab fa-dashcube"></i><span class="mini-sub-pro">  Jour</span></a></li>
+                            <a title="les jours ouvrable" href="{% url 'iscae_emploi:jours' %}"><i class="fab fa-dashcube"></i><span class="mini-sub-pro">  Jours</span></a></li>
 
 
                         <li>
-                            <a title="les Créneau disponible" href="{% url 'iscae_emploi:creneaux' %}"><i class="fa fa-hourglass-half"></i><span class="mini-sub-pro">  Créneau</span></a>
+                            <a title="les Créneau disponible" href="{% url 'iscae_emploi:creneaux' %}"><i class="fa fa-hourglass-half"></i><span class="mini-sub-pro">  Créneaux</span></a>
                         </li>
 
 
