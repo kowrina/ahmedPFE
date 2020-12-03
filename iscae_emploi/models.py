@@ -173,8 +173,10 @@ class IndispoProf(models.Model):
 
 class IndispoGroupe(models.Model):
     groupe = models.ForeignKey(Groupe,on_delete=models.CASCADE)
+    date_debut = models.DateField(blank=False , default=None, null=False)
+    date_fin = models.DateField(blank=True , default=True, null=True)
+    jours = models.ManyToManyField(Jour)
     créneaux = models.ManyToManyField(Creneau)
-    date = models.DateField(blank=False , default=None, null=False)
 
     def __str__(self):
         return '%s' %(self.groupe.nom)
