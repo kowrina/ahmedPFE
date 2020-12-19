@@ -119,6 +119,7 @@ urlpatterns = [
     path('prof_cours/<int:pk>/',views.prof_cours , name='prof_cours'),
     path('prof_indispo/<int:pk>/',views.prof_indispo , name='prof_indispo'),
     path('prof_indispo_creneau/<int:pk>/',views.prof_indispo_creneau , name='prof_indispo_creneau'),
+    path('prof_indispo_jours/<int:pk>/',views.prof_indispo_jours , name='prof_indispo_jours'),
     path('prof_preferance/<int:pk>/',views.prof_preferance , name='prof_preferance'),
     path('detail_c/<int:pk>/',views.detail_c , name='detail_c'),
     path('filiere/<int:pk>/',views.filiere , name='filiere'),

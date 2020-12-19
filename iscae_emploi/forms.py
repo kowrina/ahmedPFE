@@ -123,7 +123,19 @@ class IndispoprofForm(forms.ModelForm):
 
     class Meta:
         model = IndispoProf
-        fields = ['créneaux']
+        fields = ['jours','créneaux']
+        date_debut = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        }))
+        date_fin = forms.DateTimeField(
+            input_formats=['%d/%m/%Y %H:%M'],
+            widget=forms.DateTimeInput(attrs={
+                'class': 'form-control datetimepicker-input',
+                'data-target': '#datetimepicker2'
+            }))
 
 class IndispogroupeForm(forms.ModelForm):
 

@@ -24,7 +24,11 @@
                                               <form method="POST">
                                                     {% csrf_token %}
                                                     {% bootstrap_form form %}
-                                                  <input type="date" class="form-control" name="date">
+                                                  <h5>Date Debut</h5>
+                                                  <input placeholder="Date debut" type="date" class="form-control " name="date_debut">
+                                                  <h5>Date Fin</h5>
+                                                  <input placeholder="Date fin" type="date" class="form-control " name="date_fin">
+
                                                    <br>
                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="valide">
                                                </form>
