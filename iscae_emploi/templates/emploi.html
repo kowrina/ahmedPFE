@@ -24,6 +24,7 @@
                                               <form method="POST">
                                                     {% csrf_token %}
 
+
                                                   <h4>Date Debut<h4>
                                                   <input  type="date" class="form-control" name="date_debut">
                                                       <h4>Date Fin</h4>
@@ -32,6 +33,13 @@
                                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="valide">
                                                </form>
                                             </div>
+                                            <div class="down-product1" >
+                                {% if dd %}
+                              <a class="btn btn-success"  href="{% url 'iscae_emploi:seance_download' %}" ><i class="fa fa-download" aria-hidden="true"></i></a>
+
+                                {%endif %}
+
+                            </div>
                                         </div>
                                     </div>
                                 </div>
