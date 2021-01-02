@@ -23,6 +23,7 @@ urlpatterns = [
 
 
     path('seance_download/',views.seance_download , name='seance_download'),
+    path('emploi_download/',views.emploi_download , name='emploi_download'),
 
 
     #************* add object **************

@@ -2344,6 +2344,16 @@ ul.two-part-sp li{
     border-radius: 4px;
 }
 
+.down-product1 a {
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+
+    padding: 6px 20px;
+    color: #fff;
+    border-radius: 4px;
+}
 
 
 .product-status-wrap h4 {
